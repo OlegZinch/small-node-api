@@ -12,7 +12,16 @@ router.get('/users', async (req, res) => {
   res.json(users)
 })
 
-router.get('/users/:id', async (req, res) => {})
+router.get('/users/:id', async (req, res) => {
+  const { id } = req.params
+
+  const user = await UserRepo.findById(id)
+
+  if (!user) {
+    return res.status(404).json({ error: 'User not found' })
+  }
+  res.json(user)
+})
 
 router.post('/users', async (req, res) => {})
 
