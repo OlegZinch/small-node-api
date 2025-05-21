@@ -23,7 +23,11 @@ router.get('/users/:id', async (req, res) => {
   res.json(user)
 })
 
-router.post('/users', async (req, res) => {})
+router.post('/users', async (req, res) => {
+  console.log(req.body)
+
+  res.send('User created')
+})
 
 router.put('/users/:id', async (req, res) => {})
 
