@@ -24,9 +24,11 @@ router.get('/users/:id', async (req, res) => {
 })
 
 router.post('/users', async (req, res) => {
-  console.log(req.body)
+  const { username, bio } = req.body
 
-  res.send('User created')
+  const user = await UserRepo.insert(username, bio)
+
+  res.json(user)
 })
 
 router.put('/users/:id', async (req, res) => {})
