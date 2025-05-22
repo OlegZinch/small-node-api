@@ -43,6 +43,15 @@ router.put('/users/:id', async (req, res) => {
   res.json(user)
 })
 
-router.delete('/users/:id', async (req, res) => {})
+router.delete('/users/:id', async (req, res) => {
+  const { id } = req.params
+
+  const user = await UserRepo.delete(id)
+
+  if (!user) {
+    return res.status(404).json({ error: 'User not found' })
+  }
+  res.json(user)
+})
 
 module.exports = router
